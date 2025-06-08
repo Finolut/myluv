@@ -9,8 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <style>
     body {
-      background: linear-gradient(135deg, rgba(255, 192, 203, 0.8), rgba(255, 105, 180, 0.6)), 
-                  url('https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&w=1920&q=80');
+
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -45,7 +44,6 @@
       position: absolute;
       width: 8px;
       height: 8px;
-      background: #fff;
       border-radius: 50%;
       opacity: 0.5;
       animation: sparkle 2s infinite;
@@ -227,15 +225,11 @@
         <span>Iyaaaa</span>
       </label>
       <label class="option">
-        <input type="checkbox" name="choice" value="later" onclick="handleCheckbox(this)">
-        <span>Kasih Waktu Dulu</span>
-      </label>
-      <label class="option">
         <input type="checkbox" name="choice" value="no" onclick="handleCheckbox(this)">
         <span>Maaf, Ga Bisa</span>
       </label>
     </div>
-    <div class="instruction">Centang pilihannya, lalu klik tombol di bawah untuk screenshot ya! 💌</div>
+    <div class="instruction">Centang pilihannya, apapun pilihanmu menurutku itu yang terbaik! 💌</div>
     <div class="smiley" id="smiley">😍</div>
     <button class="screenshot-btn" onclick="takeScreenshot()">Kirim hasilnya di WA ya</button>
   </div>
@@ -257,25 +251,38 @@
         case 'yes':
           smiley.textContent = '😍';
           break;
-        case 'later':
-          smiley.textContent = '😅';
-          break;
         case 'no':
-          smiley.textContent = '😢';
+          smiley.textContent = '😅';
           break;
         default:
           smiley.textContent = '😊';
       }
     }
 
-    function takeScreenshot() {
-      html2canvas(document.getElementById('note')).then(canvas => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'love-letter-screenshot.png';
-        link.click();
-      });
-    }
+function takeScreenshot() {
+  const note = document.getElementById('note');
+
+  // Simpan style asli
+  const originalBackground = note.style.background;
+  const originalFilter = note.style.backdropFilter;
+
+  // Atur background jadi solid dan non-transparan
+  note.style.background = '#fffafc';
+  note.style.backdropFilter = 'none';
+
+  // Ambil screenshot
+  html2canvas(note).then(canvas => {
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = 'love-letter-screenshot.png';
+    link.click();
+
+    // Kembalikan style seperti semula
+    note.style.background = originalBackground;
+    note.style.backdropFilter = originalFilter;
+  });
+}
+
   </script>
 </body>
 </html>
