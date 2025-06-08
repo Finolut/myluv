@@ -593,10 +593,14 @@
     <p class="heart">💖</p>
     <p class="signature">Untuk Rania</p>
 
-      <audio autoplay loop hidden>
-  <source src="audio/bersamamu.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+    <div class="audio-control">
+      <audio id="background-music" loop autoplay>
+        <source src="audio/bersamamu.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung audio.
+      </audio>
+      <button onclick="toggleMusic()">Jangan Lupa Dipencet Sayang lagunya</button>
+    </div>
+  </div>
 
   <div class="calendar">
     <h2>Waktu aku pertama kali ajak kamu keluar di tanggal</h2>
