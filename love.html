@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Girlfriend?</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:wght@400;700&family=Lora&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, rgba(255, 192, 203, 0.8), rgba(255, 105, 180, 0.6)), 
+                  url('https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Lora', serif;
+      color: #4a2c40;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Floating Hearts Animation */
+    .floating-heart {
+      position: absolute;
+      color: #ff4d4d;
+      font-size: 1.5rem;
+      opacity: 0.7;
+      animation: float 8s infinite ease-in-out;
+      pointer-events: none;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 0.3; }
+      50% { opacity: 0.7; }
+      100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Sparkle Effect */
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: sparkle 2s infinite;
+    }
+    @keyframes sparkle {
+      0% { transform: scale(0); opacity: 0.8; }
+      50% { transform: scale(1.5); opacity: 0.4; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    .note {
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      background: rgba(255, 245, 250, 0.95);
+      border: 3px solid #ffb6c1;
+      border-radius: 1.5rem;
+      box-shadow: 0 12px 40px rgba(255, 105, 180, 0.3);
+      padding: 2.5rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      animation: fadeIn 1.5s ease-in-out;
+      z-index: 10;
+    }
+
+    .envelope {
+      position: absolute;
+      top: -25px;
+      right: -25px;
+      width: 60px;
+      height: 60px;
+      background: #ffd1dc;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      z-index: 1;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .heart {
+      color: #ff4d4d;
+      font-size: 2rem;
+      position: absolute;
+      animation: pulse 1.8s infinite;
+      z-index: 2;
+    }
+    .heart.top-left {
+      top: 15px;
+      left: 15px;
+    }
+    .heart.top-right {
+      top: 15px;
+      right: 15px;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    h1 {
+      font-family: 'Parisienne', cursive;
+      font-size: 2.2rem;
+      color: #4a2c40;
+      margin: 2rem 0;
+      text-shadow: 1px 1px 4px rgba(255, 105, 180, 0.3);
+      line-height: 1.2;
+    }
+
+    .options {
+      margin-top: 1.5rem;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem 0;
+      font-size: 1.15rem;
+      color: #4a2c40;
+      cursor: pointer;
+      padding: 0.75rem;
+      border-radius: 0.75rem;
+      background: rgba(255, 182, 193, 0.1);
+      transition: all 0.3s ease;
+    }
+    .option:hover {
+      background: rgba(255, 182, 193, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+    }
+
+    input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin-right: 12px;
+      accent-color: #ff4d4d;
+      cursor: pointer;
+    }
+
+    .instruction {
+      font-size: 0.95rem;
+      color: #6b4e71;
+      margin-top: 2rem;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .smiley {
+      font-size: 2.2rem;
+      margin-top: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .smiley:hover {
+      transform: scale(1.2);
+    }
+
+    .screenshot-btn {
+      margin-top: 1.5rem;
+      background: linear-gradient(90deg, #ff4d4d, #ff85a2);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-family: 'Playfair Display', serif;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+    }
+    .screenshot-btn:hover {
+      background: linear-gradient(90deg, #e63939, #ff7090);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 77, 77, 0.5);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (min-width: 640px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+      .option {
+        font-size: 1.25rem;
+      }
+      .instruction {
+        font-size: 1rem;
+      }
+      .note {
+        max-width: 450px;
+        padding: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Hearts -->
+  <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+  <div class="floating-heart" style="left: 30%; animation-delay: 2s;">💖</div>
+  <div class="floating-heart" style="left: 50%; animation-delay: 4s;">❤️</div>
+  <div class="floating-heart" style="left: 70%; animation-delay: 6s;">💖</div>
+  <div class="floating-heart" style="left: 90%; animation-delay: 1s;">❤️</div>
+
+  <!-- Sparkles -->
+  <div class="sparkle" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
+  <div class="sparkle" style="top: 50%; left: 80%; animation-delay: 0.5s;"></div>
+  <div class="sparkle" style="top: 70%; left: 30%; animation-delay: 1s;"></div>
+
+  <div class="note" id="note">
+    <div class="envelope"></div>
+    <div class="heart top-left">💕</div>
+    <div class="heart top-right">💕</div>
+    <h1>Maukah Kamu Jadi Pacarku?</h1>
+    <div class="options">
+      <label class="option">
+        <input type="checkbox" name="choice" value="yes" onclick="handleCheckbox(this)">
+        <span>Iyaaaa</span>
+      </label>
+      <label class="option">
+        <input type="checkbox" name="choice" value="later" onclick="handleCheckbox(this)">
+        <span>Kasih Waktu Dulu</span>
+      </label>
+      <label class="option">
+        <input type="checkbox" name="choice" value="no" onclick="handleCheckbox(this)">
+        <span>Maaf, Ga Bisa</span>
+      </label>
+    </div>
+    <div class="instruction">Centang pilihannya, lalu klik tombol di bawah untuk screenshot ya! 💌</div>
+    <div class="smiley" id="smiley">😍</div>
+    <button class="screenshot-btn" onclick="takeScreenshot()">Kirim hasilnya di WA ya</button>
+  </div>
+
+  <audio autoplay loop hidden>
+    <source src="audio/you.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function handleCheckbox(selected) {
+      const checkboxes = document.querySelectorAll('input[name="choice"]');
+      checkboxes.forEach(checkbox => {
+        if (checkbox !== selected) checkbox.checked = false;
+      });
+
+      const smiley = document.getElementById('smiley');
+      switch (selected.value) {
+        case 'yes':
+          smiley.textContent = '😍';
+          break;
+        case 'later':
+          smiley.textContent = '😅';
+          break;
+        case 'no':
+          smiley.textContent = '😢';
+          break;
+        default:
+          smiley.textContent = '😊';
+      }
+    }
+
+    function takeScreenshot() {
+      html2canvas(document.getElementById('note')).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'love-letter-screenshot.png';
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>

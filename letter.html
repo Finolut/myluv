@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Letter for Rania</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.8));
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Cedarville Cursive', cursive;
+      overflow: auto;
+    }
+
+    .letter-container {
+      width: 100vw;
+      height: 100vh;
+      background: #fff;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transform: scale(0.8) translateY(20px) rotateX(-20deg);
+      opacity: 0;
+      animation: unfold 0.8s ease forwards;
+    }
+
+    .letter-content {
+      font-size: 1.8rem;
+      line-height: 2;
+      color: #333;
+      text-align: left;
+    }
+
+    .letter-content p {
+      margin: 1rem 0;
+    }
+
+    .letter-content .signature {
+      font-size: 2rem;
+      color: #ff69b4;
+      text-align: right;
+      margin-top: 2rem;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #ff69b4, #ff1493);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.7);
+    }
+
+    .back-button:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes unfold {
+      0% {
+        transform: scale(0.8) translateY(20px) rotateX(-20deg);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1) translateY(0) rotateX(0deg);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .letter-container {
+        padding: 1.5rem;
+      }
+
+      .letter-content {
+        font-size: 1.4rem;
+      }
+
+      .letter-content .signature {
+        font-size: 1.6rem;
+      }
+
+      .back-button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="back-button" onclick="window.location.href='index.html'">Kembali</button>
+  <div class="letter-container">
+    <div class="letter-content">
+      <p>Dear Rania,</p>
+      <p>Tiap kali aku mikirin kamu, hatiku kayak dipenuhi bunga-bunga yang mekar. Kamu bikin hidupku jauh lebih berwarna, dan aku nggak pernah nyesel ngajak kamu keluar di hari itu. Aku cuma pengen bilang, aku sayang banget sama kamu, dan aku berharap kita bisa terus nulis cerita indah ini bareng. 💕</p>
+      <p class="signature">Lutfino</p>
+    </div>
+  </div>
+    <audio autoplay loop hidden>
+  <source src="audio/hingga.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+</body>
+</html>

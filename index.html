@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>First Date - Untuk Rania</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.8)),
+        url('https://images.unsplash.com/photo-1528715471577-3a36e08a1e3c?auto=format&fit=crop&w=500&q=60');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff69b4" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+    }
+
+    .container, .calendar, .love-letter, .timeline {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding: 1.5rem;
+      max-width: 90%;
+      margin-bottom: 2rem;
+    }
+
+    .container {
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .heart {
+      font-size: 2rem;
+      color: #ff4d4d;
+      animation: pulse 1.5s infinite;
+    }
+
+    .signature {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #ffcccb;
+    }
+
+    .audio-control {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+    }
+
+    .calendar {
+      background: #ffe0e6;
+      border: 4px solid #ff80ab;
+      color: #880e4f;
+    }
+
+    .calendar h2 {
+      margin: 0;
+      font-size: 26px;
+      color: #d81b60;
+    }
+
+    .date {
+      font-size: 60px;
+      margin-top: 10px;
+      color: #ff4081;
+      font-weight: bold;
+      animation: pulse 1.5s infinite;
+    }
+
+    .caption {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #880e4f;
+      opacity: 0;
+      animation: fadeIn 3s ease-in forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    button {
+      margin-top: 10px;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @media (min-width: 640px) {
+      .container, .calendar, .love-letter, .timeline {
+        max-width: 500px;
+      }
+    }
+
+    .reasons {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      max-width: 90%;
+      text-align: left;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .reasons h2 {
+      text-align: center;
+      color: #ffd1dc;
+      margin-bottom: 1rem;
+    }
+
+    .reasons ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .reasons li {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .check {
+      color: #90ee90;
+      font-size: 1.2rem;
+    }
+
+    .show {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+.photo-section {
+  background: linear-gradient(135deg, rgba(255, 245, 250, 0.9), rgba(255, 230, 240, 0.7));
+  padding: 3rem 1.5rem;
+  border-radius: 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.photo-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 182, 193, 0.3), transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.photo-section h2 {
+  color: #ff85a2;
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 2px 8px rgba(255, 105, 180, 0.4);
+  position: relative;
+  z-index: 1;
+  font-family: 'Playfair Display', serif;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.photo-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.photo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(255, 105, 180, 0.3);
+}
+
+.photo-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  border-radius: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.photo-item:hover img {
+  transform: scale(1.05);
+}
+
+.photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-item:hover .photo-overlay {
+  opacity: 1;
+}
+
+.photo-caption {
+  color: #fff;
+  font-size: 1.1rem;
+  text-align: center;
+  font-family: 'Lora', serif;
+}
+
+/* Lightbox Styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox.show {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #ff85a2;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .photo-section h2 {
+    font-size: 2rem;
+  }
+  
+  .photo-item img {
+    height: 250px;
+  }
+  
+  .photo-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+    .photo-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .photo-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .photo-item.left {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    .photo-item.right {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+
+    .photo-item img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      clip-path: path("M90 20 C110 -10, 160 -10, 160 30 C160 70, 90 110, 90 120 C90 110, 20 70, 20 30 C20 -10, 70 -10, 90 20 Z");
+      border: 4px solid #ffcccb;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      animation: popIn 1.5s ease forwards;
+    }
+
+    .photo-item img:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 25px rgba(255, 105, 180, 1);
+    }
+
+    .photo-caption {
+      color: #fff;
+      font-size: 1.1rem;
+      font-style: italic;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      max-width: 150px;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 640px) {
+      .photo-item img {
+        width: 140px;
+        height: 140px;
+      }
+
+      .photo-caption {
+        font-size: 1rem;
+      }
+
+      body {
+        padding: 0.5rem;
+      }
+    }
+
+    .nav-button {
+      margin-top: 2rem;
+      padding: 12px 25px;
+      background: linear-gradient(45deg, #ff69b4, #ff1493);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-button::before {
+      content: '💕';
+      position: absolute;
+      left: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      transition: opacity 0.3s ease, left 0.3s ease;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.7);
+    }
+
+    .nav-button:hover::before {
+      opacity: 1;
+      left: 10px;
+    }
+
+    .nav-button:active {
+      transform: scale(0.95);
+    }
+
+    /* Floating Hearts Background */
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .heart-particle {
+      position: absolute;
+      color: #ff69b4;
+      font-size: 1.5rem;
+      opacity: 0.5;
+      animation: float 10s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Love Letter Section */
+    .love-letter {
+      background: rgba(255, 192, 203, 0.2);
+      border: 3px solid #ff69b4;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .love-letter.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .envelope {
+      width: 120px;
+      height: 80px;
+      background: #fff;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.5s ease;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+.envelope::before {
+  content: '';
+  position: absolute;
+  top: 28px; /* ubah dari 0 jadi 20px, bisa kamu atur lebih besar sesuai kebutuhan */
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 40px solid #ff69b4;
+  transform: rotate(180deg);
+  transform-origin: center top;
+  transition: transform 0.5s ease;
+  z-index: 3;
+}
+
+
+    .envelope:hover::before {
+      transform: rotate(0deg);
+    }
+
+    @media (max-width: 640px) {
+      .envelope {
+        width: 100px;
+        height: 60px;
+      }
+
+      .envelope::before {
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 30px solid #ff69b4;
+      }
+    }
+
+    /* Timeline Section */
+    .timeline {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      max-width: 90%;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .timeline.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline h2 {
+      color: #ffd1dc;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '💗';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1.5rem;
+    }
+
+    .timeline-date {
+      font-weight: bold;
+      color: #ff69b4;
+      margin-right: 1rem;
+      min-width: 100px;
+    }
+
+    .timeline-desc {
+      color: #fff;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" id="floating-hearts"></div>
+
+  <div class="container">
+    <h1>Hiii buat kamu yang lagi baca ❤️</h1>
+    <p>
+      Gimana kabarnya hari ini? <br>
+      Kuharap kamu sehat selalu yaa. Jangan telat makannya nanti... eh ketebak pertanyaanku hehe 😁
+    </p>
+    <p>walaupun jarak memiskahkan kita tapi aku yakin kita bisa lalui bersama badai ini hingga menjadi pelangi yang indah</p>
+    <p>nanti bacanya jangan sambil senyum senyum yaaa wkwk</p>
+    <p class="heart">💖</p>
+    <p class="signature">Untuk Rania</p>
+
+    <div class="audio-control">
+      <audio id="background-music" loop autoplay>
+        <source src="audio/bersamamu.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung audio.
+      </audio>
+      <button onclick="toggleMusic()">Jangan Lupa Dipencet Sayang</button>
+    </div>
+  </div>
+
+  <div class="calendar">
+    <h2>Waktu aku pertama kali ajak kamu keluar di tanggal</h2>
+    <div class="date">3/6/2025</div>
+    <div class="caption">Di Kodam V Brawijaya, Surabaya</div>
+  </div>
+
+  <div class="reasons">
+    <h2>Reason Why I Love Her? 😍</h2>
+    <ul>
+      <li><span class="check">✅</span> She's smart</li>
+      <li><span class="check">✅</span> She has a good personality</li>
+      <li><span class="check">✅</span> She's perfect in my eyes</li>
+      <li><span class="check">✅</span> She always brings positive vibes</li>
+      <li><span class="check">✅</span> She understands me even in silence</li>
+      <li><span class="check">✅</span> She's my biggest comfort</li>
+      <li><span class="check">✅</span> She makes me want to be a better person</li>
+      <li><span class="check">✅</span> She's the reason I smile more</li>
+    </ul>
+  </div>
+
+  <div class="timeline">
+    <h2>Our Journey Together 🕰️</h2>
+    <div class="timeline-item">
+      <div class="timeline-date">3/6/2025</div>
+      <div class="timeline-desc">First date kita di Kodam. Aku deg-degan banget tapi seneng lihat senyum kamu. aku ga banyak ngomong tapi kamu berusaha mencari topik kita ngobrol di situ sampai kodam tutup</div>
+    </div>
+  </div>
+  <div class="photo-section">
+    <h2>Our Sweet Moments ❤️</h2>
+    <div class="photo-gallery">
+      <div class="photo-item right">
+        <img src="foto2.jpg" alt="Cute Moment" />
+        <div class="photo-caption">You stole my heart</div>
+      </div>
+      <div class="photo-item left">
+        <img src="foto3.jpg" alt="Happy Together" />
+        <div class="photo-caption">Forever my joy</div>
+      </div>
+      <div class="photo-item right">
+        <img src="foto4.jpg" alt="Love Always" />
+        <div class="photo-caption">Always with you</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container">
+    <h1>Masih Lanjut kan bacanya wkwk ❤️</h1>
+    <p>
+      ada sesuatu yang ingin aku sampaikan nih<br>
+      Kamu adalah alasan di balik senyumku setiap hari.
+    </p>
+    <p>aku ga maksa kamu mau nerima aku atau ndak cuma harapanku sih yang baik baik saja.</p>
+    <p>Satu halaman ini mungkin tak cukup untuk menuliskan semua rasa cintaku padamu.</p>
+  </div>
+  <div class="love-letter">
+    <h2>A Letter for You 💌</h2>
+    <div class="envelope" onclick="window.location.href='letter.html'">
+    </div>
+  </div>
+  <button class="nav-button" onclick="window.location.href='love.html'">
+    Lanjut ke Momen penentuan (tarik nafas dulu sebelum pencet wkwk) ❤️
+  </button>
+
+  <script>
+    function toggleMusic() {
+      const music = document.getElementById('background-music');
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    document.querySelectorAll('.reasons, .photo-section, .love-letter, .timeline').forEach(el => {
+      observer.observe(el);
+    });
+
+    function createHearts() {
+      const floatingHearts = document.getElementById('floating-hearts');
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-particle');
+        heart.innerHTML = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        floatingHearts.appendChild(heart);
+      }
+    }
+
+    window.onload = createHearts;
+
+    function scrollToNextSection() {
+      const nextSection = document.querySelector('.container:last-child');
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
